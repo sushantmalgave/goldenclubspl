@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Bat Animation with Modal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('/Users/smalgave/Desktop/image_720-1.png') no-repeat center center fixed;
+            background-size: cover; /* Ensures the full image is shown and scales properly */
+            position: relative;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .cricket-container {
+            position: relative;
+            width: 40px;
+            height: 160px;
+            cursor: pointer;
+        }
+
+        .bat {
+            position: absolute;
+            width: 40px;
+            height: 160px;
+            background: linear-gradient(to bottom, #c49a6c, #8a5a3b);
+            border-radius: 10px;
+            transform-origin: bottom center;
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .handle {
+            position: absolute;
+            width: 15px;
+            height: 40px;
+            background: black;
+            border-radius: 10px;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: red;
+            border-radius: 50%;
+            bottom: 10px;
+            left: 20px;
+            box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cricket-container:hover .bat {
+            transform: rotate(-20deg);
+        }
+
+        .cricket-container:hover .ball {
+            transform: translateX(8px) translateY(-8px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 320px;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+            color: black;
+        }
+
+        .input-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .cricket-container {
+                width: 30px;
+                height: 120px;
+            }
+
+            .bat {
+                width: 30px;
+                height: 120px;
+            }
+
+            .handle {
+                width: 12px;
+                height: 30px;
+                top: -25px;
+            }
+
+            .ball {
+                width: 25px;
+                height: 25px;
+                bottom: 5px;
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cricket-container" id="bat">
+        <div class="bat">
+            <div class="handle"></div>
+        </div>
+        <div class="ball"></div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Register</h2>
+            <form>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = document.getElementById("modal");
+            var bat = document.getElementById("bat");
+            var closeBtn = document.querySelector(".close");
+
+            bat.addEventListener("click", function () {
+                modal.style.display = "flex";
+            });
+
+            closeBtn.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
