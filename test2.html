@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Bat Animation with Modal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('/Users/smalgave/Desktop/image_720-1.png') no-repeat center center fixed;
+            background-size: contain;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cricket-container {
+            position: relative;
+            width: 50px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .bat {
+            position: absolute;
+            width: 50px;
+            height: 200px;
+            background: linear-gradient(to bottom, #c49a6c, #8a5a3b);
+            border-radius: 10px;
+            transform-origin: bottom center;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .handle {
+            position: absolute;
+            width: 20px;
+            height: 50px;
+            background: black;
+            border-radius: 10px;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ball {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            bottom: 10px;
+            left: 30px;
+            box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cricket-container:hover .bat {
+            transform: rotate(-20deg);
+        }
+
+        .cricket-container:hover .ball {
+            transform: translateX(10px) translateY(-10px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 25px;
+            cursor: pointer;
+            color: black;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cricket-container" id="bat">
+        <div class="bat">
+            <div class="handle"></div>
+        </div>
+        <div class="ball"></div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Register</h2>
+            <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DC40000024LHd" method="POST">
+                <input type="hidden" name="oid" value="00DC40000024LHd">
+                <input type="hidden" name="retURL" value="http://google.com">
+                
+                <label for="first_name">First Name</label>
+                <input id="first_name" maxlength="40" name="first_name" size="20" type="text" required>
+                
+                <label for="last_name">Last Name</label>
+                <input id="last_name" maxlength="80" name="last_name" size="20" type="text" required>
+                
+                <label for="email">Email</label>
+                <input id="email" maxlength="80" name="email" size="20" type="text" required>
+                
+                <input type="submit" name="submit" value="Sign Up">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = document.getElementById("modal");
+            var bat = document.getElementById("bat");
+            var closeBtn = document.querySelector(".close");
+
+            bat.addEventListener("click", function () {
+                modal.style.display = "flex";
+            });
+
+            closeBtn.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
